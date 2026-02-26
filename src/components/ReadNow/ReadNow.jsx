@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addToOdb, addToWishlist } from '../../Utilities/addtOdb.JS';
 
 
 
@@ -12,13 +13,23 @@ const ReadNow = () => {
 
     // const { bookName, image } = singleBook || {};
 
-    
+
 
 
     if (!singleBook) {
         return <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <h1 className="text-2xl font-bold text-red-600">Book not found</h1>
         </div>;
+    }
+
+    const handleMarkAsRead = (id) => {
+        // Call the utility function to mark the book as read
+        addToOdb(id);
+    }
+
+    const handleAddToWishlist = (id) => {
+        // Call the utility function to add the book to wishlist
+        addToWishlist(id);
     }
 
 
@@ -55,7 +66,7 @@ const ReadNow = () => {
                     </p>
 
                     <p className="text-gray-600 leading-relaxed mb-5">
-                        {singleBook.description ||
+                        {singleBook.review ||
                             "This is an amazing book filled with knowledge and inspiration. Perfect for passionate readers."}
                     </p>
 
@@ -80,7 +91,7 @@ const ReadNow = () => {
                     {/* Buttons */}
                     <div className="flex gap-4">
 
-                        <button
+                        <button onClick={() => handleMarkAsRead(id)}
                             className="
                 bg-indigo-600 text-white
                 px-6 py-2 rounded-lg
@@ -89,10 +100,10 @@ const ReadNow = () => {
                 transition
               "
                         >
-                            Read 📖
+                            Mark as Read 📖
                         </button>
 
-                        <button
+                        <button onClick={() => handleAddToWishlist(id)}
                             className="
                 bg-teal-500 text-white
                 px-6 py-2 rounded-lg

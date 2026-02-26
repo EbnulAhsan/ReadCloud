@@ -7,6 +7,7 @@ import Home from '../components/Home/Home';
 import About from '../pages/About/About';
 import BookDetails from '../components/BookDetails/BookDetails'; 
 import ReadNow from '../components/ReadNow/ReadNow';
+import ReadList from '../pages/ReadList/ReadList';
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,12 @@ export const router = createBrowserRouter([
                 Component: ReadNow,
                 loader: () => fetch('/booksData.json').then(res => res.json()),
 
+
+            },
+            {
+                path: '/readlist',
+                Component: ReadList,
+                loader: () => fetch('./booksData.json').then(res => res.json()),
             }
         ]
     },
