@@ -1,0 +1,20 @@
+name: Build Project
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node
+        run: sudo apt update && sudo apt install -y nodejs npm
+
+      - name: Check version
+        run: node -v
+
+      - name: Run script
+        run: echo "Build successful!"
